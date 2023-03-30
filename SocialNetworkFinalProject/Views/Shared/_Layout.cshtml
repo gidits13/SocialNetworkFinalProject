@@ -1,0 +1,52 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using SocialNetworkFinalProject.Models;
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SocialNetworkFinalProject</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/main-page.css.css" />
+</head>
+<body class="background-main">
+    <header class="border-bottom header background-white">
+        <div class="container">
+            <div class="topnav">
+                @if (!SignInManager.IsSignedIn(User))
+                {
+                    <a asp-area="" asp-controller="Home" asp-action="Index"><img src="https://i.ibb.co/TgYRC4G/1.jpg"></img></a>
+                }
+                else
+
+                {
+                    <a asp-area="" asp-controller="AccountManager" asp-action="MyPage"><img src="https://i.ibb.co/TgYRC4G/1.jpg"></a>
+                }
+                <partial name="_LoginPartial" />
+                <partial name="_SearchLayoutPartial" />
+            </div>
+        </div>
+    </header>
+    <div class="container background-main">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - SocialNetworkFinalProject - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
